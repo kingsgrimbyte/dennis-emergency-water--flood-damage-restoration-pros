@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-import ContactInfo from "./components/Content/ContactInfo.json";
+const ContactInfo = require("./components/Content/ContactInfo.json");
+
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/*/.{ts,tsx}',
-    './components/*/.{ts,tsx}',
-    './app/*/.{ts,tsx}',
-    './src/*/.{ts,tsx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {
@@ -19,8 +20,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        'minor': ContactInfo.minor || '#fed700',
-        'main': ContactInfo.main || '#fed700',
+        minor: ContactInfo.minor || '#fed700',
+        main: ContactInfo.main || '#fed700',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
