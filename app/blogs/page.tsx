@@ -1,10 +1,12 @@
-import Image from "next/image";
 import React from "react";
-import blogData from "@/components/Content/blogs.json";
 import BlogPosts from "../components/Widgets/BlogPosts";
-import ContactInfo from "@/components/Content/ContactInfo.json";
 import Navbar from "../components/Navbar";
-import blogsMetas from "@/components/Content/location.json"
+
+import contactContent from "@/app/Data/content";
+
+const ContactInfo: any = contactContent.contactContent;
+const blogData: any = contactContent.blogContent.posts;
+const blogsMetas: any = contactContent.locationPageContent;
 
 export async function generateMetadata() {
   const meta = JSON.parse(
@@ -16,8 +18,7 @@ export async function generateMetadata() {
   );
   return {
     title: meta.metaTitle,
-    description:
-      meta.metaDescription,
+    description: meta.metaDescription,
     alternates: {
       canonical: `${ContactInfo.baseUrl}blogs`,
     },
@@ -50,15 +51,15 @@ const page = async () => {
   return (
     <div className="">
       <Navbar />
-    
-    <div className="overflow-hidden ">
-      <div className="relative -mt-14 duration-150 ease-in-out md:mt-0"></div>
-      <div className="mx-auto max-w-[1905px]">
-        {/* <Navbar /> */}
-        {/* Content */}
-        <BlogPosts postData={blogData} catagorys={catagorys} />
+
+      <div className="overflow-hidden ">
+        <div className="relative -mt-14 duration-150 ease-in-out md:mt-0"></div>
+        <div className="mx-auto max-w-[1905px]">
+          {/* <Navbar /> */}
+          {/* Content */}
+          <BlogPosts postData={blogData} catagorys={catagorys} />
+        </div>
       </div>
-    </div>
     </div>
   );
 };

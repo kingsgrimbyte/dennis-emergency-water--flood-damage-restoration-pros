@@ -4,7 +4,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaPhoneVolume } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import ContactInfo from "@/components/Content/ContactInfo.json";
+
+import contactContent from "@/app/Data/content";
+
+const ContactInfo: any = contactContent.contactContent;
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -14,7 +17,7 @@ const Navbar = () => {
   const navLink =["Home", "Locations", "Services", "About","Blogs", "Contact"] 
   return (
     <>
-      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0">
+      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0 !overflow-hidden">
         <div className=" relative w-screen md:w-full md:max-w-[1280px] md:px-10  md:py-4">
           <div className="mt-0 flex flex-row justify-between space-x-8 rounded-2xl rounded-tr-none px-4 text-sm font-medium md:mr-6 md:justify-around">
             <div className="flex ">
