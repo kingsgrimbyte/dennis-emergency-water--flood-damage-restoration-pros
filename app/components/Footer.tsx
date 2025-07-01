@@ -55,9 +55,6 @@ const Footer = () => {
                 <Link href="/our-brands">
                   <p className="">Our Brands </p>
                 </Link>
-                <Link href={`${ContactInfo?.baseUrl}blogs`}>
-                  <p className="">Blogs </p>
-                </Link>
               </div>
             </div>
             <div className="mt-10  flex flex-col items-center   justify-center text-lg md:mt-0  md:w-[26rem]">

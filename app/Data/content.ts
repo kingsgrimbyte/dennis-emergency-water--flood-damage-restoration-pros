@@ -1,6 +1,4 @@
 import aboutData from "@/components/Content/about.json";
-import blogDataJson  from "@/components/Content/blogs.json";
-import blogCategoryMetaJson  from "@/components/Content/blogsCategoryMetas.json";
 import contactPageDataJson  from "@/components/Content/contact.json";
 import contactDataJson from "@/components/Content/ContactInfo.json";
 import homePageDataJson  from "@/components/Content/home.json";
@@ -71,14 +69,6 @@ const aboutContent: any = {
   areaweserveSection,
 };
 
-// Blogs Content
-const blogContent: any = {
-  posts: Array.isArray(blogDataJson) ? blogDataJson : [],
-};
-
-// Blogs Category Content
-const blogCategoryMetaMap: any =
-  (blogCategoryMetaJson as any) || {};
 
 // Contact Page Content
 const {
@@ -239,8 +229,6 @@ const servicePageContent: any = {
 const content: {
   aboutContent: any;
   contactContent: any;
-  blogContent: any;
-  blogCategoryMetaMap:any;
   contactPageContent: any;
   homePageContent: any;
   locationPageContent: any;
@@ -249,8 +237,6 @@ const content: {
 } = {
   aboutContent,
   contactContent,
-  blogContent,
-  blogCategoryMetaMap,
   contactPageContent,
   homePageContent,
   locationPageContent,
