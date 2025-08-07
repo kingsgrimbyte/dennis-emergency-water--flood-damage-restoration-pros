@@ -81,22 +81,13 @@ const page = ({ params }: { params: { services: string } }) => {
         </div>
         {/* who */}
       </div>
-      {/* <div className="mx-auto my-4 w-80 border p-4">
-          <div dangerouslySetInnerHTML={{ __html: serviceData.description }} />
-        </div> */}
       <div className="my-20 bg-main text-white">
         <div className="text- mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <h2 className=" text-center text-3xl font-bold">
             {serviceData.h3.split("[location]").join(locationName)}
           </h2>
           <div
-            className="mt-4 flex flex-wrap justify-center gap-4"
-            // dangerouslySetInnerHTML={{
-            //   __html: serviceData.p3
-            //     .split("[location]")
-            //     .join(locationName),
-            // }}
-          >
+            className="mt-4 flex flex-wrap justify-center gap-4">
             {serviceData.p3.split("|").map((Item: string) => (
               <p key={Item} className="m-2  rounded-md border  p-4 font-bold">
                 {Item}
@@ -110,51 +101,23 @@ const page = ({ params }: { params: { services: string } }) => {
       <div className="my-20">
         <CtaSimple />
       </div>
-      {serviceData.seoContent && (
-        <div className="max-w-7xl mx-auto px-6 py-12">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
-    {/* LEFT: Image */}
-    <div className="w-full">
-      <Image
-        width={1000}
-        height={1000}
-        src="https://ik.imagekit.io/h7rza8886p/during-construction-of-a-house-portable-plastic-b-2025-03-27-03-45-26-utc.jpg?updatedAt=1748415477782" // replace with your actual image path
-        alt="Construction Portable Toilet"
-        className="w-full h-auto rounded-xl shadow-md object-cover"
-      />
-    </div>
-
-    {/* RIGHT: Text Content */}
-    <div>
-          
-            <div
-              className="mt-4 text-lg"
-              dangerouslySetInnerHTML={{
-                __html: serviceData.seoContent
-                  ?.split("[location]").join(ContactInfo.location)
+       {serviceData.seoContent && (
+          <div className="bg-gray-100 text-black ">
+            <div className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6 lg:px-8">
+              <div
+                className="mt-4 "
+                dangerouslySetInnerHTML={{
+                  __html: serviceData.seoContent
+                    ?.split("[location]").join(ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No),
-              }}
-            >
-         
-        </div>
-    </div>
-
-  </div>
-</div>
-
-      )}
-      {/* <TypeOfDumpster /> */}
+                }}
+              ></div>
+            </div>
+          </div>
+        )}
     </div>
     </div>
   );
 };
 
 export default page;
-
-// export function generateStaticParams() {
-//   const cityData: any = Servicedata.lists;
-//   return cityData.map((locations: any) => ({
-//     services: locations.slug.toString(),
-//   }));
-// }

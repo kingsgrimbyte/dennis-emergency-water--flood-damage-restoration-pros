@@ -79,24 +79,6 @@ const Navbar = () => {
               : "absolute bottom-0 left-[-100%] right-0 top-0 flex   h-screen w-full items-center justify-center border border-main bg-main text-4xl text-white  duration-300 ease-in sm:hidden"
           }
         >
-          {/* <ul>
-            {["Home", "Locations","Services", "About", "Contact"].map((item) => (
-              <li key={item}>
-                <Link
-                onClick={handleNav}
-                href={
-                  item.toLowerCase() === "home"
-                    ? `${ContactInfo?.baseUrl}`
-                    : `${ContactInfo?.baseUrl}${item.toLowerCase().split(" ").join("-")}`
-                }
-                  className="under text-white font-semibold decoration-main decoration-2  duration-150 ease-in-out hover:underline "
-                  aria-current="page"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul> */}
           <div className=" flex h-full w-full flex-col justify-around p-6 py-10 font-medium">
             <div className="">
               {/* <div className="text-xl font-bold ">Menu</div> */}
