@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import contentData from "@/components/Content/ContactInfo.json";
 import data from "@/components/Content/subDomainUrlContent.json";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: Request) {
   const BaseUrl = contentData.baseUrl;
   const SubDomain: any = Object.keys(data);
 
@@ -53,8 +53,11 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     },
   ];
 
-  res.setHeader("Content-Type", "application/xml");
-  res.status(200).send(createSitemap(urls));
+  return new NextResponse(createSitemap(urls), {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 }
 
 function createSitemap(urls: any[]) {
