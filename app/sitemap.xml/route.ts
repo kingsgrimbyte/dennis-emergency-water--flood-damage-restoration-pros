@@ -1,12 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-//  import CityData1 from "@/public/City.json";
-import contactContent from "@/app/Data/content";
-import subdomainContent from "@/app/Data/FinalContent";
+import { NextApiRequest, NextApiResponse } from "next";
+import contentData from "@/components/Content/ContactInfo.json";
+import data from "@/components/Content/subDomainUrlContent.json";
 
-const contentData: any = contactContent.contactContent;
-const data: any = subdomainContent.subdomainData;
-
-export async function GET(req: NextRequest) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  const BaseUrl = contentData.baseUrl;
   const SubDomain: any = Object.keys(data);
 
   const SubDomainURL = SubDomain.map((location: any) => ({
@@ -16,11 +13,48 @@ export async function GET(req: NextRequest) {
     priority: 1,
   }));
 
-  return new NextResponse(createSitemap(SubDomainURL), {
-    headers: {
-      "Content-Type": "application/xml",
+  const urls = [
+    ...SubDomainURL,
+    {
+      url: `${contentData.baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
-  });
+    {
+      url: `${contentData.baseUrl}locations`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${contentData.baseUrl}services`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${contentData.baseUrl}about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${contentData.baseUrl}contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${contentData.baseUrl}subdomains/sitemap.xml`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+
+  res.setHeader("Content-Type", "application/xml");
+  res.status(200).send(createSitemap(urls));
 }
 
 function createSitemap(urls: any[]) {
