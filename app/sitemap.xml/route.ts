@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 //  import CityData1 from "@/public/City.json";
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
@@ -6,7 +6,7 @@ import subdomainContent from "@/app/Data/FinalContent";
 const contentData: any = contactContent.contactContent;
 const data: any = subdomainContent.subdomainData;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest) {
   const SubDomain: any = Object.keys(data);
 
   const SubDomainURL = SubDomain.map((location: any) => ({
@@ -16,8 +16,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     priority: 1,
   }));
 
-  res.setHeader("Content-Type", "application/xml");
-  res.status(200).send(createSitemap(SubDomainURL));
+  return new NextResponse(createSitemap(SubDomainURL), {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 }
 
 function createSitemap(urls: any[]) {
