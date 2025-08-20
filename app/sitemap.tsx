@@ -8,14 +8,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const BaseUrl = contentData.baseUrl
   const SubDomain:any = Object.keys(data)
 
+
+  const statePages = [
+    "about",
+    "contact",
+    "our-brands",
+    "services",
+  ];
   
-  const SubDomainURL = SubDomain.map((location :any) => ({
-    url: `https://${location}.${contentData.host}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1,
-  }));
+  const SubDomainURL = SubDomain.flatMap((location: any) => [
+    {
+      url: `https://${location}.${contentData.host}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    ...statePages.map((page) => ({
+      url: `https://${location}.${contentData.host}/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })),
+  ]);
+
+  // Add URLs for the pages under app/(State)
+ 
+
+
   return [
+    ...SubDomainURL,
     {
       url: `${contentData.baseUrl}`,
       lastModified: new Date(),
@@ -47,10 +68,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${contentData.baseUrl}subdomains/sitemap.xml`,
+      url: `${contentData.baseUrl}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-    },   
+    },
   ]
 }

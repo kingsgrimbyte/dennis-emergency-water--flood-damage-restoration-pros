@@ -19,6 +19,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Skip rewriting for robots.txt so it is handled by the catch-all route
+  if (url.pathname === "/robots.txt") {
+    return NextResponse.next();
+  }
+
   if (!subDomains.includes(subdomain)) {
     return NextResponse.next();
   }
