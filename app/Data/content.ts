@@ -70,6 +70,7 @@ const aboutContent: any = {
 };
 
 
+
 // Contact Page Content
 const {
   metaTitle: contactPageMetaTitle = undefined,
@@ -226,6 +227,27 @@ const servicePageContent: any = {
 };
 
 
+// Utility function to replace placeholders in strings
+function replacePlaceholders(obj: any, ContactInfo: any): any {
+  if (typeof obj === "string") {
+    return obj
+      .split("[location]").join(ContactInfo.location)
+      .split("[phone]").join(ContactInfo.No);
+  } else if (Array.isArray(obj)) {
+    return obj.map(item => replacePlaceholders(item, ContactInfo));
+  } else if (obj && typeof obj === "object") {
+    const result: any = {};
+    for (const key in obj) {
+      result[key] = replacePlaceholders(obj[key], ContactInfo);
+    }
+    return result;
+  }
+  return obj;
+}
+
+// Use contactContent as ContactInfo for replacements
+const ContactInfo = contactContent;
+
 const content: {
   aboutContent: any;
   contactContent: any;
@@ -235,13 +257,13 @@ const content: {
   brandsContent: any;
   servicePageContent: any;
 } = {
-  aboutContent,
-  contactContent,
-  contactPageContent,
-  homePageContent,
-  locationPageContent,
-  brandsContent,
-  servicePageContent,
+  aboutContent: replacePlaceholders(aboutContent, ContactInfo),
+  contactContent: replacePlaceholders(contactContent, ContactInfo),
+  contactPageContent: replacePlaceholders(contactPageContent, ContactInfo),
+  homePageContent: replacePlaceholders(homePageContent, ContactInfo),
+  locationPageContent: replacePlaceholders(locationPageContent, ContactInfo),
+  brandsContent: replacePlaceholders(brandsContent, ContactInfo),
+  servicePageContent: replacePlaceholders(servicePageContent, ContactInfo),
 };
 
 export default content;
